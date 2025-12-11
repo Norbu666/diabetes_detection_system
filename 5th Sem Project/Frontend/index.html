@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Diabetes Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      .switch-btn {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 8px;
+        background: #168aad;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .switch-btn.active {
+        background: #1a759f;
+        transform: scale(1.05);
+      }
+
+      .button-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .input-group {
+        position: relative;
+        margin: 12px 0;
+        width: 96%;
+      }
+
+      .input-group input,
+      .input-group select {
+        width: 100%;
+        padding: 14px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        background: white;
+      }
+
+      .input-group label {
+        position: absolute;
+        top: 14px;
+        left: 12px;
+        font-size: 15px;
+        color: #888;
+        transition: 0.2s ease;
+        pointer-events: none;
+        background: white;
+        padding: 0 4px;
+      }
+
+      .input-group input:focus + label,
+      .input-group input:not(:placeholder-shown) + label,
+      .input-group select:focus + label,
+      .input-group select:not([value=""]):valid + label {
+        top: -8px;
+        left: 10px;
+        font-size: 12px;
+        color: #168aad;
+      }
+
+      .switch-btn i {
+        margin-right: 8px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="contact-box">
+        <div class="left">
+          <img src="bg.png" alt="Diabetes illustration" class="hero" />
+          <div class="left-caption">
+            <span class="word1">Diabetes</span><br />
+            <span class="word2">DETECTION</span>
+          </div>
+        </div>
+
+        <div class="right">
+          <h2>Diabetes Detection</h2>
+
+          <div class="button-container">
+            <button id="femaleBtn" class="switch-btn active">
+              <i class="fa-solid fa-person-dress"></i> Female
+            </button>
+
+            <button id="maleBtn" class="switch-btn">
+              <i class="fa-solid fa-person"></i> Male
+            </button>
+          </div>
+
+          <!-- FEMALE -->
+          <div id="femaleForm">
+            <form action="/predict" method="POST">
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  name="Age"
+                  placeholder=" "
+                  min="10"
+                  max="90"
+                />
+                <label>Age</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  name="Glucose"
+                  placeholder=" "
+                  min="50"
+                  max="300"
+                />
+                <label>Glucose</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  name="BloodPressure"
+                  placeholder=" "
+                  min="40"
+                  max="200"
+                />
+                <label>Blood Pressure</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  name="Insulin"
+                  placeholder=" "
+                  min="0"
+                  max="400"
+                />
+                <label>Insulin</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  step="0.1"
+                  name="BMI"
+                  placeholder=" "
+                  min="10"
+                  max="60"
+                />
+                <label>BMI</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  name="SkinThickness"
+                  placeholder=" "
+                  min="0"
+                  max="100"
+                />
+                <label>Skin Thickness</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  step="0.01"
+                  name="DiabetesPedigreeFunction"
+                  placeholder=" "
+                  min="0.0"
+                  max="5.0"
+                />
+                <label>Diabetes Pedigree Function</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  required
+                  type="number"
+                  name="Pregnancies"
+                  placeholder=" "
+                  min="0"
+                  max="20"
+                />
+                <label>Number of Pregnancies</label>
+              </div>
+
+              <button class="btn" type="submit"><b>Predict</b></button>
+            </form>
+          </div>
+
+          <!-- MALE -->
+          <div id="maleForm" style="display: none">
+            <form action="/predict_male" method="POST">
+              <div class="input-group">
+                <input
+                  type="number"
+                  name="age"
+                  placeholder=" "
+                  required
+                  min="10"
+                  max="90"
+                />
+                <label>Age</label>
+              </div>
+
+              <div class="input-group">
+                <select name="hypertension" required>
+                  <option value="" disabled selected></option>
+                  <option value="0">0 - No Hypertension</option>
+                  <option value="1">1 - Has Hypertension</option>
+                </select>
+                <label>Hypertension</label>
+              </div>
+
+              <div class="input-group">
+                <select name="heart_disease" required>
+                  <option value="" disabled selected></option>
+                  <option value="0">0 - No Heart Disease</option>
+                  <option value="1">1 - Has Heart Disease</option>
+                </select>
+                <label>Heart Disease</label>
+              </div>
+
+              <div class="input-group">
+                <select name="smoking_history" required>
+                  <option value="" disabled selected></option>
+                  <option value="never">Never</option>
+                  <option value="current">Current</option>
+                  <option value="former">Former</option>
+                  <option value="No Info">No Info</option>
+                </select>
+                <label>Smoking History</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="number"
+                  step="0.01"
+                  name="bmi"
+                  placeholder=" "
+                  required
+                  min="10"
+                  max="60"
+                />
+                <label>BMI</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="number"
+                  step="0.01"
+                  name="hba1c"
+                  placeholder=" "
+                  required
+                  min="3"
+                  max="15"
+                />
+                <label>HbA1c Level</label>
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="number"
+                  step="0.01"
+                  name="blood_glucose"
+                  placeholder=" "
+                  required
+                  min="50"
+                  max="300"
+                />
+                <label>Blood Glucose Level</label>
+              </div>
+
+              <button type="submit" class="btn"><b>Predict</b></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SWITCH FORMS -->
+    <script>
+      const femaleBtn = document.getElementById("femaleBtn");
+      const maleBtn = document.getElementById("maleBtn");
+
+      const femaleForm = document.getElementById("femaleForm");
+      const maleForm = document.getElementById("maleForm");
+
+      femaleBtn.addEventListener("click", () => {
+        femaleForm.style.display = "block";
+        maleForm.style.display = "none";
+
+        femaleBtn.classList.add("active");
+        maleBtn.classList.remove("active");
+      });
+
+      maleBtn.addEventListener("click", () => {
+        femaleForm.style.display = "none";
+        maleForm.style.display = "block";
+
+        maleBtn.classList.add("active");
+        femaleBtn.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>

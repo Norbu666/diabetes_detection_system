@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Male Prediction History</title>
+    <style>
+      body {
+        font-family: Quicksand, sans-serif;
+        padding: 30px;
+        background: #f6f6f6;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+      }
+      th {
+        background: #1a759f;
+        color: white;
+        padding: 10px;
+      }
+      td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Male Patient Prediction History</h2>
+
+    <table>
+      <tr>
+        <th>Age</th>
+        <th>Hypertension</th>
+        <th>Heart Disease</th>
+        <th>Smoking</th>
+        <th>BMI</th>
+        <th>HbA1c</th>
+        <th>Glucose</th>
+        <th>Result</th>
+      </tr>
+
+      {% for item in records %}
+      <tr>
+        <td>{{ item.age }}</td>
+        <td>{{ item.hypertension }}</td>
+        <td>{{ item.heart_disease }}</td>
+        <td>{{ item.smoking }}</td>
+        <td>{{ item.bmi }}</td>
+        <td>{{ item.hba1c }}</td>
+        <td>{{ item.glucose }}</td>
+        <td>{{ item.result }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

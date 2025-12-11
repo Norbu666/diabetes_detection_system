@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Prediction History</title>
+    <style>
+      body {
+        font-family: Quicksand, sans-serif;
+        padding: 30px;
+        background: #f6f6f6;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+      }
+      th {
+        background: #168aad;
+        color: white;
+        padding: 10px;
+      }
+      td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Patient Prediction History</h2>
+
+    <table>
+      <tr>
+        <th>Preg</th>
+        <th>Glucose</th>
+        <th>BP</th>
+        <th>Skin</th>
+        <th>Insulin</th>
+        <th>BMI</th>
+        <th>DPF</th>
+        <th>Age</th>
+        <th>Result</th>
+      </tr>
+
+      {% for item in records %}
+      <tr>
+        <td>{{ item.preg }}</td>
+        <td>{{ item.glucose }}</td>
+        <td>{{ item.bp }}</td>
+        <td>{{ item.skin }}</td>
+        <td>{{ item.insulin }}</td>
+        <td>{{ item.bmi }}</td>
+        <td>{{ item.dpf }}</td>
+        <td>{{ item.age }}</td>
+        <td>{{ item.result }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
