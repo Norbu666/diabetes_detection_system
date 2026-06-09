@@ -70,3 +70,6 @@ Navigate to Frontend/index.html in your browser.
 📊 **Dataset**
 The dataset (diabetes.csv) contains medical attributes used to predict diabetes.
 Preprocessing is handled with scalers (scaler.pkl, male_scaler.pkl).
+
+**Use This requirements.txt to download all the require tools**
+pip install -r requirements.txt
