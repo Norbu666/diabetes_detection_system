@@ -104,8 +104,7 @@ Backend scripts (app.py, database.py) for integration and data handling.
 
 **\*\*Installation\*\***
 
-git clone https://github.com/yourusername/diabetes\_detection.git
-
+git clone https://github.com/Norbu666\diabetes\_detection.git
 cd diabetes\_detection
 
 pip install -r requirements.txt
